@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shivam Hosiery</title>
+    <link rel="stylesheet" href="{%static 'core/css/base.css' %}">
+    {% block css %}{% endblock %}
+
+
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">
+            <h2>Shivam Hosiery</h2>
+            <p>Wholesale and retail</p>
+        </div>
+
+        <div class="contact-links">
+
+            <a href="https://wa.me/919125982958" target="_blank">WhatsApp</a>
+
+            <a href="tel:+919125982958">Call us</a>
+
+        </div>
+    </div>
+
+    <div class="nav-bar">
+        <a href="/">Home</a>
+        <a href="{% url 'products' %}">Products</a> <!--products-->
+        <a href="#">Wholesale</a><!--wholesale-->
+        <a href="{% url 'cart_detail' %}">Cart</a><!--cart-->
+    </div>
+    {% block content %}{% endblock %}
+
+
+    <footer class="footer">
+        <p>© 2026 Shivam Hosiery. All Rights Reserved.<br>
+            Men’s | Women’s | Kids Hosiery – Wholesale & Retail</p>
+    </footer>
+</body>
+
+</html>

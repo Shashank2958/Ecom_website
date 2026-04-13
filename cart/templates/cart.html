@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{%static 'cart/css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="cart-page">
+
+    <!-- LEFT SIDE (Items) -->
+    <div class="cart-left">
+
+        {% for key, item in cart.items %}
+        <div class="cart-item">
+
+            <div class="item-image">
+                <img src="{{ item.image }}" alt="">
+            </div>
+
+            <div class="item-details">
+                <h4>{{ item.name }}</h4>
+                <p class="price">₹{{ item.price }}</p>
+
+                <div class="qty">
+                    <a href="{% url 'decrease_quantity' key %}">−</a>
+                    <span>{{ item.quantity }}</span>
+                    <a href="{% url 'increase_quantity' key %}">+</a>
+                </div>
+
+                <a href="{% url 'remove_from_cart' key %}" class="remove">
+                    Remove
+                </a>
+            </div>
+
+        </div>
+        {% empty %}
+        <p class="empty-cart">Oops..! Your cart is empty</p>
+        {% endfor %}
+
+    </div>
+
+
+    <!-- RIGHT SIDE (Summary) -->
+    <div class="cart-right">
+        <h3>PRICE DETAILS</h3>
+        <hr>
+
+        <p>Total Items: {{ cart|length }}</p>
+        <p>Total Price: ₹{{ total }}</p>
+
+        <hr>
+
+        <a href="{% url 'checkout' %}">
+            <button class="place-order">Place Order</button>
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

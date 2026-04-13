@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'order/css/checkout.css' %}">
+{% endblock %}
+{% block content %}
+<div class="chkout-div">
+    <div class="checkout-heading">
+        <h2>Checkout</h2>
+    </div>
+
+    <div class="form-container">
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="name" placeholder="Enter Full Name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" name="phone" placeholder="Enter Your Number" required>
+            </div>
+
+            <div class="form-group">
+                <label>Address</label>
+                <textarea name="address" placeholder="Enter Full Address" required></textarea>
+            </div>
+            <div class="payment_options">
+                <label>
+                    <strong>Select Payment Method</strong>
+                    <br>
+                </label>
+                <label>
+                    <input type="radio" name="payment_method" value="cod" required>Cash on Delivery (COD)
+                </label><br>
+
+                <label>
+                    <input type="radio" name="payment_method" value="online">Online Payment
+                </label>
+
+
+
+            </div>
+
+            <button type="submit" class="order-btn">Confirm Order</button>
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
