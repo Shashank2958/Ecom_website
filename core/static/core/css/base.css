@@ -4,6 +4,47 @@
     box-sizing: border-box;
 }
 
+.message-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.message {
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 10px;
+    animation: slideIn .4s ease;
+}
+
+.success {
+    background: #28a745;
+}
+
+.error {
+    background: #dc3545;
+}
+
+.warning {
+    background: #ffc107;
+    color: black;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 .header {
     display: flex;
     justify-content: space-between;

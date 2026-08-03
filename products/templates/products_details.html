@@ -22,7 +22,8 @@
         </p>
 
         {% if product.is_available %}
-        <a href="{% url 'add_to_cart' product.id %}" class="buy-btn">Buy Now</a>
+        <a href="{% url 'add_to_cart' product.id %}" class="cart-btn">Add to Cart 🛒</a>
+        <a href="{% url 'buy_now' product.id %}" class="buy-btn">Buy Now</a>
         {% else %}
         <p class="out-of-stock">Out of Stock</p>
         {% endif %}

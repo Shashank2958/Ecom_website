@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from products.models import Product
+from django.contrib import messages
 
 # Create your views here.
 def add_to_cart(request,product_id):
@@ -15,7 +16,8 @@ def add_to_cart(request,product_id):
             'image':product.image.url,
         }
     request.session['cart']=cart
-    return redirect('cart_detail')
+    messages.success(request,"Product added to cart successfully!")
+    return redirect('products_details',id=product_id)
 
 def cart_detail(request):
     cart=request.session.get('cart',{})
@@ -36,7 +38,8 @@ def increase_quantity(request,product_id):
 def decrease_quantity(request,product_id):
     cart=request.session.get('cart',{})
     if str(product_id) in cart:
-        cart[str(product_id)]['quantity']-=1
+        if cart[str(product_id)]['quantity']>1:
+            cart[str(product_id)]['quantity']-=1
     request.session['cart']=cart
     return redirect('cart_detail')
 

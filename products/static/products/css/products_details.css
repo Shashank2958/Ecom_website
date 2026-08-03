@@ -21,12 +21,23 @@
 
 .buy-btn {
     display: inline-block;
-    padding: 12px 30px;
+    padding: 23px;
     background: black;
+    color: white;
+    text-decoration: none;
+    margin-top: 10px;
+    height: 62px;
+}
+
+.cart-btn {
+    display: inline-block;
+    padding: 20px;
+    background: red;
     color: white;
     text-decoration: none;
     margin-top: 20px;
 }
+
 
 .out-of-stock {
     color: red;

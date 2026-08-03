@@ -13,6 +13,20 @@
 </head>
 
 <body>
+    {% if messages %}
+    <div class="message-container">
+        {% for message in messages %}
+        <div class="message {{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+
+
+
+
     <div class="header">
         <div class="logo">
             <h2>Shivam Hosiery</h2>
@@ -41,6 +55,18 @@
         <p>© 2026 Shivam Hosiery. All Rights Reserved.<br>
             Men’s | Women’s | Kids Hosiery – Wholesale & Retail</p>
     </footer>
+
+    <script>
+        setTimeout(function () {
+
+            let messages = document.querySelector(".message-container");
+
+            if (messages) {
+                messages.style.display = "none";
+            }
+
+        }, 3000);
+    </script>
 </body>
 
 </html>
