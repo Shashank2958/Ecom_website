@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{%static 'products/css/products.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="product-grid">
+    {% for product in products %}
+    <div class="product-card">
+        <a href="{% url 'products_details' product.id %}">
+            <img src="{{product.image.url}}" alt="{{ product.name }}">
+            <br>
+            <h3>{{ product.name }}</h3>
+            <br>
+            <p>₹{{ product.retail_price }}</p>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

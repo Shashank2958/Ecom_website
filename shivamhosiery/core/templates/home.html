@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{%static 'core/css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <h1>Premium UnderGarments & Seasonal Wear</h1>
+    <p>Retail & Wholesale Available</p>
+</section>
+
+<!-- CATEGORIES SECTION -->
+<section class="categories">
+    <h2>Our Categories</h2>
+
+    <div class="category-grid">
+
+        <!-- Undergarments -->
+        <div class="category-card">
+            <a href="#">
+                <img src="{% static 'core/images/undergarmentsimg.jpg' %}" alt="Undergarments">
+                <h3>Undergarments</h3>
+                <p>Men | Women | Kids</p>
+            </a>
+        </div>
+
+        <!-- Summer -->
+        <div class="category-card">
+            <a href="#">
+                <img src="{% static 'core/images/summerimg.jpg' %}" alt="Summer Collection">
+                <h3>Summer Collection</h3>
+                <p>Light & Cotton Wear</p>
+            </a>
+        </div>
+
+
+        <!-- Winter -->
+        <div class="category-card">
+            <a href="#">
+                <img src="{% static 'core/images/wintersimg.jpg' %}" alt="Winter Collection">
+                <h3>Winter Collection</h3>
+                <p>Thermals & Warm Wear</p>
+            </a>
+        </div>
+
+    </div>
+</section>
+<!--ranges-->
+<section class="ranges">
+    <h2>Our Collections</h2>
+    <ul class="collection-list">
+        <li>Gents Vest</li>
+        <li>Gents Underwear</li>
+        <li>Bra</li>
+        <li>Lingerie</li>
+        <li>Panty</li>
+        <li>Socks</li>
+        <li>Thermals</li>
+        <li>Lower</li>
+        <li>T-shirt</li>
+        <li>sweat-shirt</li>
+        <li>Leggings</li>
+        <li>kids vest</li>
+        <li>Bloomers</li>
+        <li>ladies socks</li>
+        <li>Kids Drawers</li>
+    </ul>
+</section>
+<div class="notice">
+    <marquee>
+        <p>
+        <pre>We welcome you in Shivam Hosiery....            Your Trust is our Grade.....         Wholesale purchasing is more cost friendly than retail....                The latest scheme will update on scheme Section....              Thankyou! keep Enjoying
+            </pre>
+        </p>
+    </marquee>
+
+</div>
+<!-- RETAIL VS WHOLESALE -->
+<section class="info">
+    <h2>Retail vs Wholesale</h2>
+    <ul>
+        <strong>Retail:</strong> Single piece purchase
+        <br>
+        <strong>Wholesale:</strong> Bulk orders at best price
+        <p>For a Good Deal in WHOLESALE contact us...</p>
+    </ul>
+</section>
+
+{% endblock %}

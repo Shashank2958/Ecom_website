@@ -1,0 +1,92 @@
+body {
+    background-color: #f1f3f6;
+}
+
+/* Main Layout */
+.cart-page {
+    width: 85%;
+    margin: 30px auto;
+    display: flex;
+    gap: 20px;
+}
+
+/* Left side */
+.cart-left {
+    flex: 3;
+}
+
+/* Each product card */
+.cart-item {
+    display: flex;
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+}
+
+.item-image img {
+    width: 120px;
+}
+
+.item-details {
+    margin-left: 20px;
+    flex: 1;
+}
+
+.item-details h4 {
+    margin-bottom: 10px;
+}
+
+.price {
+    font-weight: bold;
+    color: #212121;
+}
+
+/* Quantity */
+.qty {
+    margin: 10px 0;
+}
+
+.qty a {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+/* Remove */
+.remove {
+    color: red;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.remove:hover {
+    color: #2874f0;
+}
+
+/* Right summary box */
+.cart-right {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    height: fit-content;
+}
+
+/* Place Order Button */
+.place-order {
+    width: 100%;
+    padding: 10px;
+    background: #2874f0;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.empty-cart {
+    font-size: 100px;
+    background-color: darkgoldenrod;
+    border-radius: 3%;
+}

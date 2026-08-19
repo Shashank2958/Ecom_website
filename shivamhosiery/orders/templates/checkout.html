@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'order/css/checkout.css' %}">
+{% endblock %}
+{% block content %}
+<div class="chkout-div">
+    <div class="checkout-heading">
+        <h2>Checkout</h2>
+    </div>
+
+    <div class="form-container">
+        <form method="POST" id="checkout-form">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="name" placeholder="Enter Full Name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" name="phone" placeholder="Enter Your Number" required>
+            </div>
+
+            <div class="form-group">
+                <label>Address</label>
+                <textarea name="address" placeholder="Enter Full Address" required></textarea>
+            </div>
+            <div class="payment_options">
+                <label>
+                    <strong>Select Payment Method</strong>
+                    <br>
+                </label>
+                <label>
+                    <input type="radio" name="payment_method" value="COD" required>Cash on Delivery (COD)
+                </label><br>
+
+                <label>
+                    <input type="radio" name="payment_method" value="ONLINE">Online Payment
+                </label>
+
+
+
+            </div>
+
+            <button type="submit" class="order-btn">Confirm Order</button>
+
+        </form>
+    </div>
+</div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    const form = document.getElementById("checkout-form");
+    form.addEventListener("submit", function (e) {
+
+        const paymentMethod = document.querySelector(
+            'input[name="payment_method"]:checked').value;
+
+        if (paymentMethod === "COD") {
+            return;
+        }
+
+
+
+
+        e.preventDefault();
+        const formData = new FormData(form);
+
+        fetch("/orders/checkout/", {
+            method: "POST",
+            body: formData
+        })
+
+            .then(response => response.json())
+
+            .then(data => {
+                var options = {
+                    key: data.key,
+                    amount: data.amount,
+                    order_id: data.razorpay_order_id,
+
+                    handler: function (response) {
+                        const verifyData = new FormData();
+
+                        verifyData.append(
+                            "razorpay_payment_id",
+                            response.razorpay_payment_id);
+
+                        verifyData.append(
+                            "razorpay_order_id",
+                            response.razorpay_order_id);
+
+                        verifyData.append(
+                            "razorpay_signature",
+                            response.razorpay_signature);
+                        verifyData.append(
+                            "csrfmiddlewaretoken",
+                            formData.get("csrfmiddlewaretoken")
+                        );
+
+                        fetch("/orders/verify-payment/", {
+                            method: "POST",
+                            body: verifyData
+                        })
+
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    window.location.href = "/orders/success";
+                                }
+                                else {
+                                    alert(data.message);
+                                }
+                            });
+                    }
+                };
+                var rzp = new Razorpay(options);
+                rzp.on("payment.failed", function (response) {
+
+                    console.log("FULL PAYMENT ERROR:", response);
+                    console.log("code:", response.error.code);
+                    console.log("reason:", response.error.reason);
+                    console.log("source", response.error.source);
+                    console.log("Step:", response.error.step);
+                    alert("Payment Failed!\n\n" +
+                        "Code: " + response.error.code + "\n" +
+                        "Description: " + response.error.description + "\n" +
+                        "Reason: " + response.error.reason
+
+                    );
+                });
+                rzp.open();
+            });
+    });
+
+</script>
+
+
+{% endblock %}
